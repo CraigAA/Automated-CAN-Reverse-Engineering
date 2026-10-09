@@ -144,7 +144,3 @@ The Holden Astra is common in Australia and included in CANdid, but absent from 
 ## Acknowledgements
 
 Supervised by Dr. Marian Mihailescu, University of Adelaide.
-
-## License
-
-> TODO: choose a license (e.g. MIT) and add a `LICENSE` file.
