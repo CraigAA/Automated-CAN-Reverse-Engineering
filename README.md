@@ -85,16 +85,6 @@ Macro F1 is the primary metric rather than accuracy. Signal sizes vary widely (a
 - **The Independent Bit LSTM was the best model**, and was especially strong on counters (F1 1.00). The report suggests recurrent layers suit isolated bit time series better than attention.
 - **No model detected checksums** (F1 = 0.00). See [Limitations](#limitations).
 
-<!-- Export Figure 2 (single-window prediction) from the report -->
-![LSTM Independent Bit prediction of a single window](docs/figures/single_window_prediction.png)
-
-*Single-window prediction of the Independent Bit LSTM against ground truth.*
-
-<!-- Export Figure 3 (final vote prediction) from the report -->
-![Final vote prediction on unseen Impreza CAN ID](docs/figures/impreza_final_prediction.png)
-
-*Final majority-vote prediction on an unseen Impreza CAN ID. Opacity shows vote confidence.*
-
 ### Cross-vehicle generalisation (Macro F1)
 
 | Model | Subaru | Mazda | Toyota |
@@ -113,10 +103,6 @@ Macro F1 is the primary metric rather than accuracy. Signal sizes vary widely (a
 
 The Holden Astra is common in Australia and included in CANdid, but absent from openDBC, so it makes a realistic reverse engineering target with no public ground truth. The framework outputs a predicted layout with per-bit confidence that a researcher can use to decide where to focus manual analysis.
 
-<!-- Export Figures 4 and 5 from the report -->
-![Holden Astra example 1](docs/figures/astra_example_1.png)
-![Holden Astra example 2](docs/figures/astra_example_2.png)
-
 ## Limitations
 
 - **Checksums are not detected.** A single bit's time series, viewed in isolation, is indistinguishable from a counter, sensor or noise. Subaru checksums behaved like simple combinations of other signals, while Mazda used more complex algorithms. Detecting them needs context from neighbouring bits, which the independent-bit approach discards.
@@ -129,6 +115,13 @@ The Holden Astra is common in Australia and included in CANdid, but absent from 
 - **Checksum detection** by combining bit-level temporal behaviour with payload-level context
 - **Full translation:** assign meaning (speed, RPM, etc.) to detected signals
 - **Physical value decoding:** once a sensor signal is isolated (e.g. bits 8-23), fit supervised regression against ground truth such as GPS or OBD-II logs to recover scale factors and offsets, with the LSTM handling tokenisation upstream
+
+## Getting Started
+
+```bash
+git clone https://github.com/CraigAA/Automated-CAN-Reverse-Engineering.git
+cd Automated-CAN-Reverse-Engineering
+```
 
 ## References
 
